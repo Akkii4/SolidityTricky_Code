@@ -19,4 +19,8 @@ contract StringOperations {
         }
         return string(rb);
     }
+
+    function compareString(string calldata a, string calldata b) public pure returns (bool) {
+        return keccak256(abi.encodePacked(a)) == keccak256(abi.encodePacked(b));
+    }
 }
