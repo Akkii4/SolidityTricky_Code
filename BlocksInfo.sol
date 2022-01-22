@@ -2,7 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract BlocksInfo {
-    // Returns the time at the block creation
+    // Returns the time at the block creation (in seconds since the epoch)
     function getCurrentTime() public view returns (uint) {
         return block.timestamp;
     }
@@ -33,7 +33,7 @@ contract BlocksInfo {
         return block.difficulty;
     }
 
-    // Return the hash of any block number.
+    // Return the hash of recent 256 blocks, otherwise returns 0
     function getBlockHash(uint blockNumber) public view returns (bytes32) {
         return blockhash(blockNumber);
     }
