@@ -43,4 +43,15 @@ contract BlocksInfo {
         return gasleft();
     }
 
+    // Return block's base fee recently introduced after EIP-1559(London Fork)
+    // Should only be used EVM version >= london
+    function getBaseFee() public view returns (uint) {
+        return block.basefee;
+    }
+
+    // Return the gas price of the transaction
+    function getTrxGasPrice() public view returns (uint) {
+        return tx.gasprice;
+    }
+
 }
