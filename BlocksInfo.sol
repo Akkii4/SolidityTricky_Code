@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: YES_I_WILL_SUE_YOU
+// SPDX-License-Identifier: UNLICENSED
 pragma solidity ^0.8.0;
 
 contract BlocksInfo {
