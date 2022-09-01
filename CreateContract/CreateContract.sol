@@ -73,6 +73,11 @@ contract CreateContract {
                             mload(bytecode), 
                             _salt // salt
                         )
+            // s = salt (any arbitrary value for randomness)
+            addr := create2(
+                callvalue(), // wei sent with current call
+                add(bytecode, 32), // Actual code starts after skipping the first 32 bytes
+                mload(bytecode), // load the size of code
 
             if iszero(extcodesize(addr)) {  // if contract size is empty, revert
                 revert(0,0)
