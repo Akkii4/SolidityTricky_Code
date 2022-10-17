@@ -6,8 +6,8 @@ contract StringOperations {
         return bytes(s).length;
     }
 
-    function concatenateStrings(string calldata a, string calldata b) public pure returns (string memory) {
-        return string(abi.encodePacked(a,b));
+    function concatenateStrings(string calldata a, string calldata b) public pure returns (string memory, string memory) {
+        return (string.concat(a, b), string(abi.encodePacked(a,b)));
     }
 
     function reverseStrings(string calldata s) public pure returns (string memory) {
