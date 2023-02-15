@@ -1,5 +1,3 @@
-// SPDX-License-Identifier: UNLICENSED
-
 pragma solidity 0.8.0;
 
    /* You shouldn't rely on `isContract` to protect against flash loan attacks!
@@ -26,5 +24,19 @@ contract CodeSize {
         }
         return (size > 0);
     }
+    
+    /* EVM opcode EXTCODEHASH returns the hash of the bytecode contract 
+        - use to determine if an address is a smart contract 
+        - can detect even smaller changes in the contract code
+        - all Externally Owned Account address will return the following hash & 0x0 for any unused account
+    */
+    function isContract_OP(address account) external view returns (bool) {
+        bytes32 eoaHash = 0xc5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470;
+
+        bytes32 codeHash;    
+        assembly { codeHash := extcodehash(account) }
+
+        return (codeHash != eoaHash && codeHash != 0x0);
+   }
 
 }
