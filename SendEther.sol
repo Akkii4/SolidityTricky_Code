@@ -53,9 +53,9 @@ contract SendEther {
 
     // Error Handling: Call returns a boolean value indicating success or failure, thus need requires statement.
     // Gas Limit: forward all gas by defaut or also can send by setting gas
-    // Note: This function in combination with re-entrancy guard should be used by asssuring :
-                        //          . making all state changes before calling other contracts
-                        //          . using re-entrancy guard modifier to prevent re-entrancy
+    // Note: Prerequisites before call method  :
+            //          . making all state changes before calling other contracts
+            //          . using re-entrancy guard modifier to prevent re-entrancy
     function sendViaCall(address payable _to) public payable {
         (bool sent, bytes memory data) = _to.call{value: msg.value}("");
         require(sent, "Failed to send Ether");
