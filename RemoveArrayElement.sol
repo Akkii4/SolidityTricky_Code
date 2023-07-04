@@ -8,7 +8,7 @@ contract RemoveArrayElement {
         _;
     }
 
-    //Array Remove An Element by shifting to left, it preserves order, but takes more gas
+    // Remove an element by shifting each to left, it preserves order, but consumes more gas
     function removeElement(uint256[] memory a, uint256 index) public checkIndex(index, a.length) pure returns (uint256[] memory) {
         
         uint256[] memory result = new uint256[](a.length - 1);
@@ -21,19 +21,21 @@ contract RemoveArrayElement {
         return result;
     }
 
-    // it removes array element by changing the element to be replaced by the last element & then deletes the last element 
-    // more effecient in gas but  dont preserve order
-    function removeElement2(uint256[] memory a, uint256 index) public checkIndex(index, a.length) pure returns (uint256[] memory) {
+    /**
+    * it removes array element by changing the element to be replaced by the element at last index
+    * more effecient in gas but doesn't preserve order
+    */
+    function removeElement2(uint256[] memory a, uint256 index) public checkIndex(index, a.length) pure returns (uint256[] memory result) {
+        uint256 newArrLength = a.length - 1;
         
-        uint256[] memory result = new uint256[](a.length - 1);
-        for (uint256 i = 0; i < result.length; i++) {
+        result = new uint256[](newArrLength);
+        
+        for (uint256 i = 0; i < newArrLength; i++) {
             result[i] = a[i];
-            if(i == index) {
-                continue;
-            }
+            if(i == index) result[index] = a[newArrLength];
         }  
-        result[index] = a[a.length - 1];
-        return result;
+
+        
     }
 
 }
